@@ -19,7 +19,7 @@ namespace Introduction
         {
             DirectoryInfo directory = new DirectoryInfo(path);
             FileInfo[] files = directory.GetFiles();
-            Array.Sort(files);
+            Array.Sort(files, new FileInfoComparer());
 
             foreach(FileInfo file in files)
             {
