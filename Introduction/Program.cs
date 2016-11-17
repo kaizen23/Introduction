@@ -13,6 +13,22 @@ namespace Introduction
         {
             string path = @"C:\windows";
             ShowLargeFilesWithoutLinq(path);
+            Console.WriteLine("***********");
+            ShowLargeFilesWithtLinq(path);
+            Console.ReadKey();
+      
+        }
+
+        private static void ShowLargeFilesWithtLinq(string path)
+        {
+            var query = from file in new DirectoryInfo(path).GetFiles()
+                        orderby file.Length descending
+                        select file;
+            foreach(var file in query.Take(5))
+            {
+                Console.WriteLine($"{file.Name,-20} :{file.Length,10:N0}");
+            }
+
         }
 
         private static void ShowLargeFilesWithoutLinq(string path)
@@ -23,11 +39,9 @@ namespace Introduction
             for(int i=0; i<5; i++)
             {
                 FileInfo file = files[i];
-                Console.WriteLine($"{file.Name} :{file.Length}");
+                Console.WriteLine($"{file.Name,-20} :{file.Length, 10:N0}");
          
             }
-
-            Console.ReadKey();
         }   
     }
 
