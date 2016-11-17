@@ -20,11 +20,11 @@ namespace Introduction
             DirectoryInfo directory = new DirectoryInfo(path);
             FileInfo[] files = directory.GetFiles();
             Array.Sort(files, new FileInfoComparer());
-
-            foreach(FileInfo file in files)
+            for(int i=0; i<5; i++)
             {
+                FileInfo file = files[i];
                 Console.WriteLine($"{file.Name} :{file.Length}");
-                
+         
             }
 
             Console.ReadKey();
